@@ -1,0 +1,60 @@
+import java.util.Scanner;
+public class Uasrafli {
+
+   
+    public static void main(String[] args) {
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+            boolean mulai = true;
+            
+            while (mulai) {
+                int nilaiMin = 0;
+                int nilaiMax = 100;
+                int tebakan;
+                
+                System.out.print("Apakah sudah siap bermain? (Y/T): ");
+                String konfirmasi = scanner.next();
+                System.out.println();
+                
+                if (konfirmasi.equalsIgnoreCase("y")) {
+                    while (true) {
+                        int selisih = 0;
+                        tebakan = (nilaiMax + nilaiMin) / 2;
+                        System.out.print("Apakah angka yang Anda miliki lebih besar dari " + tebakan + "? (Y/T) : ");
+                        String lebihBesar = scanner.next();
+                        
+                        if (lebihBesar.equalsIgnoreCase("y")) {
+                            nilaiMin = tebakan + 1;
+                        } else {
+                            nilaiMax = tebakan;
+                        }
+                        
+                        if (nilaiMax - nilaiMin == 1) {
+                            System.out.print("Apakah angka yang Anda miliki lebih besar dari " + nilaiMin + "? (Y/T) : ");
+                            lebihBesar = scanner.next();
+                            if (lebihBesar.equalsIgnoreCase("y")) {
+                                System.out.println("Angka yang anda miliki adalah " + nilaiMax);
+                                System.out.println("SELESAI ");
+                                break;
+                            } else {
+                                System.out.println("Angka yang anda miliki adalah " + nilaiMin);
+                                System.out.println("SELESAI ");
+                                break;
+                            }
+                        }
+                    }
+                    System.out.print("Apakah Anda ingin bermain lagi? (Y/T): ");
+                    String playAgainResponse = scanner.next();
+                    
+                    if (!playAgainResponse.equalsIgnoreCase("y")) {
+                        mulai = false;
+                        System.out.println("Terima Kasih.");
+                    }
+                } else {
+                    mulai = false;
+                    System.out.println("Terima Kasih.");
+                }
+            }
+        }
+    }
+}
